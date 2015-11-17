@@ -25,8 +25,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import org.apache.batik.dom.svg.SVGContext;
-import org.apache.batik.ext.awt.LinearGradientPaint;
-import org.apache.batik.ext.awt.MultipleGradientPaint;
+import java.awt.LinearGradientPaint;
+import java.awt.MultipleGradientPaint;
 import org.apache.batik.gvt.GraphicsNode;
 
 import org.w3c.dom.Element;
@@ -69,8 +69,8 @@ public class SVGLinearGradientElementBridge
         Paint buildGradient(Element paintElement,
                             Element paintedElement,
                             GraphicsNode paintedNode,
-                            MultipleGradientPaint.CycleMethodEnum spreadMethod,
-                            MultipleGradientPaint.ColorSpaceEnum colorSpace,
+                            MultipleGradientPaint.CycleMethod spreadMethod,
+                            MultipleGradientPaint.ColorSpaceType colorSpace,
                             AffineTransform transform,
                             Color [] colors,
                             float [] offsets,

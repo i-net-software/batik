@@ -32,7 +32,7 @@ import org.apache.batik.css.engine.CSSStylableElement;
 import org.apache.batik.css.engine.SVGCSSEngine;
 import org.apache.batik.css.engine.value.ListValue;
 import org.apache.batik.css.engine.value.Value;
-import org.apache.batik.ext.awt.MultipleGradientPaint;
+import java.awt.MultipleGradientPaint;
 import org.apache.batik.ext.awt.image.renderable.ClipRable;
 import org.apache.batik.ext.awt.image.renderable.Filter;
 import org.apache.batik.gvt.CompositeGraphicsNode;
@@ -195,12 +195,12 @@ public abstract class CSSUtilities
      *
      * @param e the element
      */
-    public static MultipleGradientPaint.ColorSpaceEnum
+    public static MultipleGradientPaint.ColorSpaceType
         convertColorInterpolation(Element e) {
         Value v = getComputedStyle(e, SVGCSSEngine.COLOR_INTERPOLATION_INDEX);
         return (CSS_LINEARRGB_VALUE == v.getStringValue())
-            ? MultipleGradientPaint.LINEAR_RGB
-            : MultipleGradientPaint.SRGB;
+            ? MultipleGradientPaint.ColorSpaceType.LINEAR_RGB
+            : MultipleGradientPaint.ColorSpaceType.SRGB;
     }
 
     /////////////////////////////////////////////////////////////////////////

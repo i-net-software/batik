@@ -27,7 +27,7 @@ import java.util.List;
 
 import org.apache.batik.dom.AbstractNode;
 import org.apache.batik.dom.util.XLinkSupport;
-import org.apache.batik.ext.awt.MultipleGradientPaint;
+import java.awt.MultipleGradientPaint;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.util.ParsedURL;
 
@@ -87,8 +87,8 @@ public abstract class AbstractSVGGradientElementBridge
         }
 
         // 'spreadMethod' attribute - default is pad
-        MultipleGradientPaint.CycleMethodEnum spreadMethod
-            = MultipleGradientPaint.NO_CYCLE;
+        MultipleGradientPaint.CycleMethod spreadMethod
+            = MultipleGradientPaint.CycleMethod.NO_CYCLE;
         s = SVGUtilities.getChainableAttributeNS
             (paintElement, null, SVG_SPREAD_METHOD_ATTRIBUTE, ctx);
         if (s.length() != 0) {
@@ -96,7 +96,7 @@ public abstract class AbstractSVGGradientElementBridge
         }
 
         // 'color-interpolation' CSS property
-        MultipleGradientPaint.ColorSpaceEnum colorSpace
+        MultipleGradientPaint.ColorSpaceType colorSpace
             = CSSUtilities.convertColorInterpolation(paintElement);
 
         // 'gradientTransform' attribute - default is an Identity matrix
@@ -139,8 +139,8 @@ public abstract class AbstractSVGGradientElementBridge
         Paint buildGradient(Element paintElement,
                             Element paintedElement,
                             GraphicsNode paintedNode,
-                            MultipleGradientPaint.CycleMethodEnum spreadMethod,
-                            MultipleGradientPaint.ColorSpaceEnum colorSpace,
+                            MultipleGradientPaint.CycleMethod spreadMethod,
+                            MultipleGradientPaint.ColorSpaceType colorSpace,
                             AffineTransform transform,
                             Color [] colors,
                             float [] offsets,
@@ -155,16 +155,16 @@ public abstract class AbstractSVGGradientElementBridge
      * @param s the spread method
      * @param ctx the BridgeContext to use for error information
      */
-    protected static MultipleGradientPaint.CycleMethodEnum convertSpreadMethod
+    protected static MultipleGradientPaint.CycleMethod convertSpreadMethod
         (Element paintElement, String s, BridgeContext ctx) {
         if (SVG_REPEAT_VALUE.equals(s)) {
-            return MultipleGradientPaint.REPEAT;
+            return MultipleGradientPaint.CycleMethod.REPEAT;
         }
         if (SVG_REFLECT_VALUE.equals(s)) {
-            return MultipleGradientPaint.REFLECT;
+            return MultipleGradientPaint.CycleMethod.REFLECT;
         }
         if (SVG_PAD_VALUE.equals(s)) {
-            return MultipleGradientPaint.NO_CYCLE;
+            return MultipleGradientPaint.CycleMethod.NO_CYCLE;
         }
         throw new BridgeException
             (ctx, paintElement, ERR_ATTRIBUTE_VALUE_MALFORMED,
